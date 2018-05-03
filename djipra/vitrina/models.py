@@ -18,9 +18,14 @@ class AppVer(models.Model):
     udt = models.DateTimeField()
     adt = models.DateTimeField()
 
+    def __str__(self):
+        return '{name} / {vers}'.format(name=self.name, vers=self.vers)
+
     class Meta:
         managed = False
         db_table = 'app_ver'
+        verbose_name = 'Контроль версий'
+        verbose_name_plural = 'Контроль версий'
 
 
 class DelLog(models.Model):
@@ -32,6 +37,8 @@ class DelLog(models.Model):
     class Meta:
         managed = False
         db_table = 'del_log'
+        verbose_name = 'Удаленные записи'
+        verbose_name_plural = 'Удаленные записи'
 
 
 class Prg(models.Model):
@@ -104,6 +111,8 @@ class PrgOiv(models.Model):
     class Meta:
         managed = False
         db_table = 'prg_oiv'
+        verbose_name = 'орган исполнительной власти'
+        verbose_name_plural = 'органы исполнительной власти'
 
 
 class PrgOkr(models.Model):
@@ -119,6 +128,9 @@ class PrgOkr(models.Model):
     class Meta:
         managed = False
         db_table = 'prg_okr'
+        verbose_name = 'Округ'
+        verbose_name_plural = 'Округ'
+        ordering = ['name']
 
 
 class PrgReg(models.Model):
@@ -135,6 +147,9 @@ class PrgReg(models.Model):
     class Meta:
         managed = False
         db_table = 'prg_reg'
+        verbose_name = 'Регион'
+        verbose_name_plural = 'Регионы'
+        ordering = ['name']
 
 
 class PrgRhb(models.Model):
@@ -156,9 +171,16 @@ class PrgRhb(models.Model):
     udt = models.DateTimeField()
     adt = models.DateTimeField()
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         managed = False
         db_table = 'prg_rhb'
+        verbose_name = 'ИПР/ПРП - реабилитация'
+        verbose_name_plural = 'ИПР/ПРП - реабилитация'
+        ordering = ['name']
+
 
 
 class RhbDic(models.Model):
@@ -174,6 +196,9 @@ class RhbDic(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_dic'
+        verbose_name = 'Мероприятие'
+        verbose_name_plural = 'Мероприятия'
+        ordering = ['name']
 
 
 class RhbEvnt(models.Model):
@@ -190,6 +215,9 @@ class RhbEvnt(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_evnt'
+        verbose_name = 'Подтип мероприятия'
+        verbose_name_plural = 'Подтипы мероприятий'
+        ordering = ['name']
 
 
 class RhbExc(models.Model):
@@ -207,6 +235,9 @@ class RhbExc(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_exc'
+        verbose_name = 'Организации исполнители мероприятий'
+        verbose_name_plural = 'Организации исполнители мероприятий'
+        ordering = ['name']
 
 
 class RhbGrp(models.Model):
@@ -222,6 +253,9 @@ class RhbGrp(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_grp'
+        verbose_name = 'Раздел'
+        verbose_name_plural = 'Разделы'
+        ordering = ['name']
 
 
 class RhbGtsr(models.Model):
@@ -238,6 +272,9 @@ class RhbGtsr(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_gtsr'
+        verbose_name = 'Группа ТСР'
+        verbose_name_plural = 'Группы ТСР'
+        ordering = ['name']
 
 
 class RhbRes(models.Model):
@@ -253,6 +290,9 @@ class RhbRes(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_res'
+        verbose_name = 'Результат выполнения мероприятия'
+        verbose_name_plural = 'Результаты выполнения мероприятия'
+        ordering = ['name']
 
 
 class RhbTsr(models.Model):
@@ -265,11 +305,14 @@ class RhbTsr(models.Model):
     adt = models.DateTimeField()
 
     def __str__(self):
-        return self.name
+        return self.name[:100]
 
     class Meta:
         managed = False
         db_table = 'rhb_tsr'
+        verbose_name = 'ТСР'
+        verbose_name_plural = 'Справочник ТСР'
+        ordering = ['name']
 
 
 class RhbType(models.Model):
@@ -286,3 +329,6 @@ class RhbType(models.Model):
     class Meta:
         managed = False
         db_table = 'rhb_type'
+        verbose_name = 'Тип мероприятий'
+        verbose_name_plural = 'Типы мероприятий'
+        ordering = ['name']
